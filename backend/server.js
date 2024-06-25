@@ -26,7 +26,7 @@ app.use(cookieParser());
 app.get("/", (req, res) => {
   res.status(200).send({ message: "welcome to the todo - app - api!" });
 });
-
+app.options('*', cors(corsOptions));
 app.use(authRoutes);
 app.use(taskRoutes); //added this so that the task routes can be accessed
 
