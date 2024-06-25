@@ -13,7 +13,7 @@ const app = express();
 
 const corsOptions = {
   origin: [
-    "http://localhost:5173", "https://to-do-app-frontend-dun.vercel.app","https://to-do-app-backend-mfp7.onrender.com","https://to-do-app-frontend-guwt1sbvq-miit-dagas-projects.vercel.app/"
+    "http://localhost:5173", "https://to-do-app-frontend-dun.vercel.app","https://to-do-app-backend-mfp7.onrender.com","https://to-do-app-frontend-guwt1sbvq-miit-dagas-projects.vercel.app/","https://to-do-app-frontend-dun.vercel.app/home"
   ],
   "Access-Control-Allow-Origin": ["https://to-do-app-frontend-dun.vercel.app","https://to-do-app-backend-mfp7.onrender.com"],
   "Access-Control-Allow-Credentials": true,
