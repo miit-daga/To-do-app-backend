@@ -11,22 +11,26 @@ const cookieParser = require('cookie-parser');
 connectDB();
 const app = express();
 
-const corsOptions = {
+// const corsOptions = {
+//   origin: [
+//     "http://localhost:5173", "https://to-do-app-frontend-dun.vercel.app","https://to-do-app-backend-mfp7.onrender.com","https://to-do-app-frontend-guwt1sbvq-miit-dagas-projects.vercel.app/"
+//   ],
+//   methods: "GET,POST,PUT,DELETE,PATCH",
+//   optionsSuccessStatus: 200,
+//   allowedHeaders: ["Content-Type", "Authorization","set-cookie"],
+//   credentials: true,
+// };
+
+app.use(express.json());
+app.use(cookieParser());
+app.use(cors({
   origin: [
     "http://localhost:5173", "https://to-do-app-frontend-dun.vercel.app","https://to-do-app-backend-mfp7.onrender.com","https://to-do-app-frontend-guwt1sbvq-miit-dagas-projects.vercel.app/"
   ],
-  methods: "GET,POST,PUT,DELETE,PATCH",
-  optionsSuccessStatus: 200,
-  allowedHeaders: ["Content-Type", "Authorization","set-cookie"],
-  credentials: true,
-};
-
-app.use(express.json());
-app.use(cors(corsOptions));
-app.use(cookieParser());
+}));
 
 // Ensure your app handles preflight requests
-app.options('*', cors(corsOptions));
+app.options('*', cors());
 
 app.get("/", (req, res) => {
   res.status(200).send({ message: "welcome to the todo - app - api!" });
