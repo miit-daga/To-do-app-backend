@@ -2,6 +2,7 @@ const { decode } = require("punycode");
 const Task = require("../models/taskModel");
 const User = require("../models/userModel");
 const jwt = require("jsonwebtoken");
+const { count } = require("console");
 
 // @route  GET /tasks
 // @desc   Get tasks of the user
@@ -11,11 +12,13 @@ const getTasks = async (req, res) => {
         const token = req.cookies.jwt;
         const decodedToken = jwt.verify(token, process.env.ACCESS_TOKEN_SECRET);
         const tasks = await Task.find({ user: decodedToken.user_id });
+        console.log(token);
         res.json({
             tasks: tasks
         });
     } catch (err) {
         res.status(500).json('TaskModel error');
+        console.log(err);
     }
 };
 
@@ -35,6 +38,8 @@ const getTask = async (req, res) => {
         res.json(task);
     } catch (err) {
         res.status(500).json({ message: "Failed to retrieve task from database" });
+        console.log(err);
+
     }
 };
 
@@ -51,6 +56,7 @@ const getCompletedTasks = async (req, res) => {
         });
     } catch (err) {
         res.status(500).json({ message: "Failed to retrieve task from database" });
+        console.log(err);
     }
 };
 
@@ -65,6 +71,7 @@ const getIncompletedTasks = async (req, res) => {
         res.json({tasks: tasks});
     } catch (err) {
         res.status(500).json({ message: "Failed to retrieve task from database" });
+        console.log(err);
     }
 };
 
@@ -91,6 +98,7 @@ const addTask = async (req, res) => {
         });
     } catch (err) {
         res.status(500).json({ message: "Failed to add task to database" });
+        console.log(err);
     }
 };
 
@@ -123,6 +131,7 @@ const updateTaskContent = async (req, res) => {
         });
     } catch(err) {
         res.status(500).json({ message: err });
+        console.log(err);
     }
 };
 
@@ -156,6 +165,7 @@ const updateTaskStatus = async (req, res) => {
         });
     } catch(err) {
         res.status(500).json({ message: "Failed to update task status" });
+        console.log(err);
     }
 };
 
@@ -182,6 +192,7 @@ const deleteTask = async (req, res) => {
         res.json({ id: req.params.id });
     } catch(err) {
         res.status(500).json({ message: "Failed to delete task" });
+        console.log(err);
     }
 };
 
