@@ -42,7 +42,8 @@ const createUser = async (req, resp) => {
       httpOnly: true,
       maxAge: maxAge * 1000,
       secure: true, // set to true if your using https
-      sameSite: 'strict',
+      sameSite: 'none',
+      domain: '.vercel.app'
     }); // Set the cookie
 
     resp.status(201).json({
