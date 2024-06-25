@@ -13,7 +13,7 @@ const app = express();
 
 const corsOptions = {
   origin: [
-    "https://to-do-app-frontend.netlify.app/"
+    "http://localhost:5173", "https://to-do-app-frontend-dun.vercel.app","https://to-do-app-backend-mfp7.onrender.com","https://to-do-app-frontend-guwt1sbvq-miit-dagas-projects.vercel.app/","https://to-do-app-frontend-dun.vercel.app/home","https://to-do-app-frontend.netlify.app/"
   ],
   "Access-Control-Allow-Origin": ["https://to-do-app-frontend-dun.vercel.app","https://to-do-app-backend-mfp7.onrender.com"],
   "Access-Control-Allow-Credentials": true,
