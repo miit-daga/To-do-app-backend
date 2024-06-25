@@ -13,7 +13,7 @@ const app = express();
 
 const corsOptions = {
   origin: [
-    "http://localhost:5173",
+    "http://localhost:5173","https://to-do-app-frontend-dun.vercel.app/"
   ],
   methods: "GET,POST,PUT,DELETE, PATCH",
   optionsSuccessStatus: 200,
