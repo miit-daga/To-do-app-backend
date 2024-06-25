@@ -1,5 +1,7 @@
 const express = require("express");
-const port = process.env.PORT || 3001;
+const colors = require("colors");
+const dotenv = require("dotenv").config();
+const port = process.env.PORT||3000;
 const cors = require("cors");
 const connectDB = require("./config/db");
 const authRoutes = require("./routes/authRoutes");
