@@ -42,7 +42,7 @@ const createUser = async (req, resp) => {
       httpOnly: true,
       maxAge: maxAge * 1000,
       secure: true, // set to true if your using https
-      SameSite: 'None',
+      SameSite: 'Lax',
       domain: '.vercel.app'
     }); // Set the cookie
 
@@ -93,12 +93,12 @@ const loginUser = async (req, resp) => {
           user.username,
           user._id,
         );
-        // console.log(token);
+        console.log(token);
         resp.cookie('jwt', token, {
           httpOnly: true,
           maxAge: maxAge * 1000,
           secure: true, // set to true if your using https
-          SameSite: 'None',
+          SameSite: 'Lax',
           domain: '.vercel.app'
         }); // Set the cookie
         
@@ -128,7 +128,7 @@ const logoutUser = async (req, resp) => {
     httpOnly: true,
     maxAge: -1,
     secure: true, // set to true if your using https
-    SameSite: 'None',
+    SameSite: 'Lax',
     domain: '.vercel.app'
   }); // negative maxAge so that the cookie expires immediately
 
