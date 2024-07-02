@@ -13,7 +13,7 @@ const app = express();
 
 const corsOptions = {
   origin: [
-    "http://localhost:5173", "https://to-do-app-27.vercel.app/"
+    "http://localhost:5173", "https://to-do-app-27.vercel.app"
   ],
   "Access-Control-Allow-Origin": ["https://to-do-app-27.vercel.app","https://to-do-app-backend-mfp7.onrender.com"],
   "Access-Control-Allow-Credentials": true,
