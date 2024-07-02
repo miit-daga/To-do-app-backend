@@ -93,14 +93,14 @@ const loginUser = async (req, resp) => {
           user.username,
           user._id,
         );
-
+        console.log(token);
         resp.cookie('jwt', token, {
           httpOnly: true,
           maxAge: maxAge * 1000,
           secure: true, // set to true if your using https
-          sameSite: 'strict',
+          sameSite: 'none',
         }); // Set the cookie
-
+        
         resp.status(200).json({
           "user": user,
 
