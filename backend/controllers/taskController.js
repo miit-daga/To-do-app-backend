@@ -11,10 +11,7 @@ const getTasks = async (req, res) => {
     try {
         const token = req.cookies.jwt;
         const decodedToken = jwt.verify(token, process.env.ACCESS_TOKEN_SECRET);
-        console.log(decodedToken);
-        console.log(decodedToken.user_id);
         const tasks = await Task.find({ user: decodedToken.user_id });
-        // console.log(token);
         res.json({
             tasks: tasks
         });
