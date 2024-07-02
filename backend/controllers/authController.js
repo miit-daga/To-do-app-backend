@@ -62,16 +62,26 @@ const createUser = async (req, resp) => {
 const updateUser = async (req, resp) => {
   const updates = req.body;
   const token = req.cookies.jwt;
+
   try {
     const decodedToken = jwt.verify(token, process.env.ACCESS_TOKEN_SECRET);
+
+    // If password is being updated, hash it before updating the user
+    if (updates.password) {
+      const salt = await bcrypt.genSalt(10);
+      updates.password = await bcrypt.hash(updates.password, salt);
+    }
+
     const user = await User.findByIdAndUpdate(decodedToken.user_id, updates, {
       new: true,
       runValidators: true,
     });
-    resp.status(200).json(user);
+
     if (!user) {
       throw new Error('User not found');
     }
+
+    resp.status(200).json(user);
   } catch (err) {
     const errors = authUtils.handleSignUpError(err);
     resp.status(500).json({ errors });
@@ -100,7 +110,7 @@ const loginUser = async (req, resp) => {
           sameSite: 'None',
           partitioned: true
         }); // Set the cookie
-        
+
         resp.status(200).json({
           "user": user,
 
