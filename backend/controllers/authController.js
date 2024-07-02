@@ -42,7 +42,8 @@ const createUser = async (req, resp) => {
       httpOnly: true,
       maxAge: maxAge * 1000,
       secure: true, // set to true if your using https
-      sameSite: 'None'
+      sameSite: 'None',
+      partitioned: true
     }); // Set the cookie
 
     resp.status(201).json({
@@ -97,7 +98,8 @@ const loginUser = async (req, resp) => {
           httpOnly: true,
           maxAge: maxAge * 1000,
           secure: true, // set to true if your using https
-          sameSite: 'None'
+          sameSite: 'None',
+          partitioned: true
         }); // Set the cookie
         
         resp.status(200).json({
@@ -126,7 +128,8 @@ const logoutUser = async (req, resp) => {
     httpOnly: true,
     maxAge: -1,
     secure: true, // set to true if your using https
-    sameSite: 'None'
+    sameSite: 'None',
+    partitioned: true
   }); // negative maxAge so that the cookie expires immediately
 
   resp.status(200).json({
