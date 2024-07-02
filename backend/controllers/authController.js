@@ -93,7 +93,6 @@ const loginUser = async (req, resp) => {
           user.username,
           user._id,
         );
-        console.log(token);
         resp.cookie('jwt', token, {
           httpOnly: true,
           maxAge: maxAge * 1000,
