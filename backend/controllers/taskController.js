@@ -111,6 +111,10 @@ const updateTaskContent = async (req, res) => {
         const userId = decodedToken.user_id;
         const {title, description,dueDate} = req.body;
         // makes sure the logged in user matches the user of the task
+        if (task.user.toString() !== userId) {
+            res.status(401);
+            throw new Error("User not authorized!");
+        }
         const task = await Task.findById(req.params.id);
         if (!task) {
             res.status(400);
@@ -119,7 +123,7 @@ const updateTaskContent = async (req, res) => {
         if(title) task.title = title;
         if(task.description) task.description = description;
         if(task.dueDate) task.dueDate = dueDate;
-        // checking for user
+        task.taskStatus= false;
         await task.save();
         res.status(200).json({
             success: true,
