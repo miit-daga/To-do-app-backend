@@ -122,17 +122,18 @@ const updateTaskContent = async (req, res) => {
             res.status(401);
             throw new Error("User not authorized!");
         }
-        
+
         if(title) task.title = title;
         if(task.description) task.description = description;
         if(task.dueDate) task.dueDate = dueDate;
-        task.taskStatus= false;
+        task.completed=false;
         await task.save();
         res.status(200).json({
             success: true,
             message: "Task content changed successfully!",
             title: task.title,
             description: task.description,
+            completed: task.completed,
             task:task
         });
     } catch(err) {
