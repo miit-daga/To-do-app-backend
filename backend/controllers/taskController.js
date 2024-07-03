@@ -110,16 +110,19 @@ const updateTaskContent = async (req, res) => {
         const decodedToken = jwt.verify(token, process.env.ACCESS_TOKEN_SECRET);
         const userId = decodedToken.user_id;
         const {title, description,dueDate} = req.body;
-        // makes sure the logged in user matches the user of the task
-        if (task.user.toString() !== userId) {
-            res.status(401);
-            throw new Error("User not authorized!");
-        }
+    
         const task = await Task.findById(req.params.id);
         if (!task) {
             res.status(400);
             throw new Error("Task not found!");
         }
+
+        // makes sure the logged in user matches the user of the task
+        if (task.user.toString() !== userId) {
+            res.status(401);
+            throw new Error("User not authorized!");
+        }
+        
         if(title) task.title = title;
         if(task.description) task.description = description;
         if(task.dueDate) task.dueDate = dueDate;
